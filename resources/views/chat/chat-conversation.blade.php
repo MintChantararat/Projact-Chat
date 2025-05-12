@@ -108,7 +108,7 @@
             projectId: "XXXXXXXXXXXXXXXXXXXXXXX",
             storageBucket: "XXXXXXXXXXXXXXXXXXXXXXX",
             messagingSenderId: "XXXXXXXXXXXXXXXXXXXXXXX",
-            appId: "XXXXXXXXXXXXXXXXXXXXXXX"
+            appId: "XXXXXXXXXXXXXXXXXXXXXXX",
         };
 
         if (!firebase.apps.length) {

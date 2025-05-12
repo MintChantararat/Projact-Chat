@@ -70,7 +70,7 @@ class GroupChatController extends Controller
                 }
             }
 
-            $this->database->getReference("{$this->groupChatTable}/{$groupId}/group_member")->set($groupMembersData);
+            $this->database->getReference("{$this->groupChatTable}/{$groupId}/group_member")->update($groupMembersData);
 
             return redirect()->back()->with('success', 'สร้างกลุ่มสำเร็จ!');
         } catch (\Exception $e) {
@@ -122,12 +122,19 @@ class GroupChatController extends Controller
         }
 
         try {
-            $memberRef = $this->database->getReference("{$this->groupChatTable}/{$groupId}/group_member/{$firebaseUid}");
-            $memberRef->update([
-                'left_at' => now()->toDateTimeString()
-            ]);
+            $memberPath = "{$this->groupChatTable}/{$groupId}/group_member/{$firebaseUid}";
 
-            return redirect()->back()->with('success', 'คุณได้ออกจากกลุ่มแล้ว');
+            // ตรวจสอบก่อนว่าอยู่ในกลุ่มจริง
+            $member = $this->database->getReference($memberPath)->getValue();
+
+            if (!$member) {
+                return redirect()->back()->with('error', 'คุณไม่ได้อยู่ในกลุ่มนี้');
+            }
+
+            // ลบสมาชิกออกจากกลุ่มจริง ๆ
+            $this->database->getReference($memberPath)->remove();
+
+            return redirect()->back()->with('success', 'ออกจากกลุ่มเรียบร้อยแล้ว');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'ออกจากกลุ่มไม่สำเร็จ: ' . $e->getMessage());
         }

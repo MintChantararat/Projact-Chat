@@ -90,7 +90,8 @@
           @if(session('role') !== 'admin')
             <input type="text" name="employee_id" class="form-control bg-light" value="{{ $data['employee_id'] ?? '' }}" readonly>
           @else
-            <input type="text" name="employee_id" class="form-control" value="{{ $data['employee_id'] ?? '' }}">
+            <input type="text" name="employee_id" class="form-control bg-light" value="{{ $data['employee_id'] ?? '' }}" readonly>
+            <!--<input type="text" name="employee_id" class="form-control" value="{{ $data['employee_id'] ?? '' }}">-->
           @endif
       </div>
 

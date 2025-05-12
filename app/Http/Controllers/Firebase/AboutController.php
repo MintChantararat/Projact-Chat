@@ -31,15 +31,22 @@ class AboutController extends Controller
 
     public function update(Request $request)
     {
+        $aboutRef = $this->database->getReference('about');
+        $existingData = $aboutRef->getValue() ?? [];
+
         $data = $request->only(['company_name', 'established_at', 'email', 'phone', 'address']);
 
-        // ✅ อัปโหลดรูปภาพ
+        // ✅ ใช้รูปเดิมถ้าไม่มีการอัปโหลดใหม่
         if ($request->hasFile('photo')) {
             $path = $request->file('photo')->store('about', 'public');
             $data['photo'] = '/storage/' . $path;
+        } else {
+            $data['photo'] = $existingData['photo'] ?? null;
         }
 
-        $this->database->getReference('about')->set($data);
+        $aboutRef->update($data); // ✅ ใช้ update แทน set
+
         return redirect()->route('about.show')->with('status', 'บันทึกข้อมูลแล้ว');
     }
+
 }

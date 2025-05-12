@@ -23,7 +23,7 @@
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label>รหัสพนักงาน</label>
-                                <input type="text" class="form-control" name="employee_id" id="employee_id">
+                                <input type="text" class="form-control bg-light" name="employee_id" id="employee_id" readonly>
                             </div>
                             <div class="col-md-6">
                                 <label>บทบาท</label>

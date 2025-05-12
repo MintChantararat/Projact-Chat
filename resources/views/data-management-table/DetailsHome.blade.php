@@ -182,7 +182,7 @@
                         <i class="bi bi-image icon-large fs-4"></i>
                     </label>
                     <input type="file" name="images[]" id="image-upload" accept="image/*" multiple hidden>
-                    <input type="text" name="message" class="form-control" placeholder="พิมพ์ข้อความ..." required>
+                    <input type="text" name="message" class="form-control" placeholder="พิมพ์ข้อความ..." required autocomplete="off" value="">
                     <button type="submit" class="btn btn-primary ms-2">โพสต์</button>
                 </div>
             </form>

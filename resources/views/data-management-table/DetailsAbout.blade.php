@@ -111,12 +111,6 @@
                     </div>
                 </div> <!-- end form col -->
             </div> <!-- end row -->
-
-            @if (session('role') === 'admin')
-            <div class="text-end mt-4">
-                <button type="submit" class="btn btn-primary">บันทึก</button>
-            </div>
-            @endif
         </div>
     </div>
 </div>
